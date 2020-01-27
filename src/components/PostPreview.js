@@ -1,16 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import instaMockup from 'media/insta.png';
+import * as actions from 'actions';
+import {PreviewWrapper} from 'components/StyledWrappers';
+import {BorderStyledButton, StyledButtonWrapper} from 'components/StyledButton';
+import {InstaCaption} from 'components/StyledTexts';
 
 class PostPreview extends Component {
   render(){
     return(
-      <div style={{maxWidth:350, boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)', borderRadius:3, padding:10}}>
+      <PreviewWrapper>
         <div style={{backgroundImage: `url(${this.props.imageUrl})`, backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPositionX: 10}}>
           <img src={instaMockup} style={{maxWidth:'100%'}} alt="Logo" />
         </div>
-        <p style={{padding:'0px 20px', fontFamily: 'Open Sans, sans-serif', fontSize:'small', color:'#4D4D4F'}}>{this.props.imageText || "GetMeAText!"}</p>
-      </div>
+        <InstaCaption>{this.props.imageText || "GetMeAText!"}</InstaCaption>
+        {
+          (this.props.imageText && this.props.imageUrl) &&
+            <StyledButtonWrapper>
+              <BorderStyledButton onClick={this.props.savePost}>
+                Noice save that one!
+              </BorderStyledButton>
+            </StyledButtonWrapper>
+
+        }
+      </PreviewWrapper>
     )
   }
 };
@@ -19,4 +32,4 @@ function mapStateToProps(state){
   return {...state.post};
 }
 
-export default connect(mapStateToProps)(PostPreview);
+export default connect(mapStateToProps, actions)(PostPreview);

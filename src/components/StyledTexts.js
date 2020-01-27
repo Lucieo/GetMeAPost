@@ -15,8 +15,16 @@ const StyledText = styled.p`
   font-size:small;
 `
 
+const InstaCaption = styled.p`
+  padding:0px 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size:small;
+  color:#4D4D4F;
+`
+
 export {
   StyledMainTitle,
   StyledSecondTitle,
-  StyledText
+  StyledText,
+  InstaCaption
 }

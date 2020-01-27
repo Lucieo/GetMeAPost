@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {SAVE_TEXT, FETCH_TEXT, FETCH_IMAGE, CHANGE_IMAGE} from 'actions/types';
+import {SAVE_TEXT, FETCH_TEXT, FETCH_IMAGE, CHANGE_IMAGE, SAVE_POST} from 'actions/types';
+import {shuffleArray} from 'helpers';
 
 export function saveText(text){
   return {
@@ -11,7 +12,6 @@ export function saveText(text){
 export function fetchText(){
   return axios.get('https://uselessfacts.jsph.pl/random.json?language=en').then(
     response =>{
-      console.log(response)
       return {
         type : FETCH_TEXT,
         payload : response.data.text
@@ -20,11 +20,12 @@ export function fetchText(){
   );
 }
 
-export function fetchImages(){
-  return axios.get('https://picsum.photos/v2/list').then(response=>{
+export function fetchImages(imagePageIndex){
+  return axios.get(`https://picsum.photos/v2/list?page=${imagePageIndex+1}`).then(response=>{
     return {
       type : FETCH_IMAGE,
-      payload : response.data
+      payload : shuffleArray(response.data),
+      imagePageIndex : imagePageIndex+1
     }
   });
 }
@@ -32,5 +33,11 @@ export function fetchImages(){
 export function changeImage(){
   return {
     type : CHANGE_IMAGE
+  }
+}
+
+export function savePost(){
+  return {
+    type : SAVE_POST
   }
 }

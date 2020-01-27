@@ -1,4 +1,4 @@
-import {SAVE_TEXT, FETCH_TEXT, FETCH_IMAGE, CHANGE_IMAGE} from 'actions/types'
+import {SAVE_TEXT, FETCH_TEXT, FETCH_IMAGE, CHANGE_IMAGE, SAVE_POST} from 'actions/types'
 
 export default function(state={}, action){
   switch(action.type){
@@ -7,16 +7,35 @@ export default function(state={}, action){
 
     case FETCH_TEXT:
       const fetchedText = action.payload;
-      console.log(fetchedText)
       return {...state, imageText : fetchedText};
 
     case FETCH_IMAGE:
       const firstImageUrl = cleanFormat(action.payload[0].download_url)
-      return {...state, imagesList : action.payload, imageId:0, imageUrl:firstImageUrl}
+      return {...state,
+        imagesList : action.payload,
+        imageId:0,
+        imageUrl:firstImageUrl,
+        imagePageIndex:action.imagePageIndex
+      }
 
     case CHANGE_IMAGE:
       const imageUrl = cleanFormat(state.imagesList[state.imageId+1].download_url)
-      return {...state, imageId:state.imageId+1, imageUrl:imageUrl}
+      return {...state,
+        imageId:state.imageId+1,
+        imageUrl:imageUrl
+      }
+
+    case SAVE_POST:
+      const newPost = {
+        imageUrl:state.imageUrl,
+        imageText:state.imageText
+      }
+      return {
+        ...state,
+        imageUrl:undefined,
+        imageText:undefined,
+        savedPosts : state.savedPosts? [...state.savedPosts, newPost] : [newPost]
+      }
 
     default:
       return state;

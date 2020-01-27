@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 const StyledButtonWrapper = styled.div`
   padding:5px;
+  text-align:center;
 `
 
 const StyledButton = styled.button`
   border: none;
   background: #EE5160;
-  color: #ffffff !important;
+  color: #ffffff;
   font-weight: 100;
   padding: 20px;
   text-transform: uppercase;
@@ -28,4 +29,16 @@ const StyledButton = styled.button`
   }
 `;
 
-export {StyledButton, StyledButtonWrapper};
+const BorderStyledButton = styled(StyledButton)`
+  color: #EE5160;
+  border: 2px solid #EE5160;
+  background:white;
+  &:hover{
+    border-color:transparent;
+  }
+`;
+
+export {StyledButton,
+  StyledButtonWrapper,
+  BorderStyledButton
+};

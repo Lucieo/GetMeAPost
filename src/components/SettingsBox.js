@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
+import {getRndInteger} from 'helpers';
+
+import {FaCamera, FaQuestionCircle} from 'react-icons/fa';
+import {MdChatBubble} from 'react-icons/md';
+
 import {StyledButton, StyledButtonWrapper} from 'components/StyledButton';
 import {StyledMainTitle, StyledSecondTitle, StyledText} from 'components/StyledTexts';
 import {SettingsWrapper} from 'components/StyledWrappers';
@@ -12,6 +17,7 @@ const StyledTextArea = styled.textarea`
   width:100%;
   border-radius: 5px;
   border-color: lightgray;
+  margin:10px;
 `;
 
 
@@ -35,12 +41,17 @@ class SettingsBox extends Component {
 
   handleImageFetch = ()=>{
     if(this.props.imagesList && this.props.imageId+1<this.props.imagesList.length-1){
-      console.log('change image')
       this.props.changeImage();
     }
     else{
-      console.log('fetch image');
-      this.props.fetchImages();
+      let pageIndex = -1;
+      if(!this.props.imagePageIndex){
+        pageIndex = getRndInteger(0,34)
+      }
+      else if(this.props.imagePageIndex && this.props.imagePageIndex+1<35){
+        pageIndex = this.props.imagePageIndex
+      }
+      this.props.fetchImages(pageIndex)
     }
   }
 
@@ -51,20 +62,25 @@ class SettingsBox extends Component {
         <StyledText>a simple post generator for overworked influencers </StyledText>
         <StyledButtonWrapper>
           <StyledButton className="fetch-comments" onClick={this.handleImageFetch}>
-            Get me an Image
+            Get me an Image <FaCamera/>
           </StyledButton>
         </StyledButtonWrapper>
 
         <form onSubmit={this.handleSubmit}>
-          <StyledTextArea placeholder="Type your comment here..." onChange={this.handleChange} value={this.state.comment}/>
+          <StyledTextArea
+            placeholder="Type your comment here..."
+            onChange={this.handleChange}
+            value={this.state.comment}
+            maxLength='2200'
+          />
           <StyledButtonWrapper>
-            <StyledButton>Submit my comment</StyledButton>
+            <StyledButton>Submit my comment <MdChatBubble/></StyledButton>
           </StyledButtonWrapper>
         </form>
         <StyledSecondTitle>No inspiration? </StyledSecondTitle>
         <StyledButtonWrapper>
           <StyledButton className="fetch-comments" onClick={this.props.fetchText}>
-            Fetch me a comment
+            Fetch me a comment <FaQuestionCircle/>
           </StyledButton>
         </StyledButtonWrapper>
       </SettingsWrapper>
