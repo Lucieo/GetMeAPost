@@ -1,28 +1,34 @@
-import React, {Component} from 'react';
+import React from 'react';
 import SettingsBox from 'components/SettingsBox';
 import PostPreview from 'components/PostPreview';
 import PostCollection from 'components/PostCollection';
-import {PostFactoryWrapper, AppWrapper} from 'components/StyledWrappers';
+import {PostFactoryWrapper, WarningWrapper} from 'components/StyledWrappers';
+import GoBackToWork from 'components/GoBackToWork';
 import {connect} from 'react-redux';
 
 
 
 
-class App extends Component{
-  render(){
-    console.log(this.props.savedPosts)
+const App = (props)=>{
     return(
-      <AppWrapper>
-        <PostFactoryWrapper>
-          <SettingsBox/>
-          <PostPreview/>
-        </PostFactoryWrapper>
-        {this.props.savedPosts &&
+      <>
+        {
+          (props.savedPosts && props.savedPosts.length>15)
+          ?
+            <WarningWrapper>
+              <GoBackToWork/>
+            </WarningWrapper>
+          :
+            <PostFactoryWrapper>
+              <SettingsBox/>
+              <PostPreview/>
+            </PostFactoryWrapper>
+        }
+        {(props.savedPosts && props.savedPosts.length>0)&&
           <PostCollection/>
         }
-      </AppWrapper>
+      </>
     )
-  }
 }
 
 function mapStateToProps(state){

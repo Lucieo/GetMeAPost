@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import instaMockup from 'media/insta.png';
+import instaDefault from 'media/postImageDefault.png';
 import * as actions from 'actions';
-import {PreviewWrapper} from 'components/StyledWrappers';
+import {PreviewWrapper, PreviewBgImg} from 'components/StyledWrappers';
 import {BorderStyledButton, StyledButtonWrapper} from 'components/StyledButton';
 import {InstaCaption} from 'components/StyledTexts';
 
@@ -10,9 +11,9 @@ class PostPreview extends Component {
   render(){
     return(
       <PreviewWrapper>
-        <div style={{backgroundImage: `url(${this.props.imageUrl})`, backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPositionX: 10}}>
+        <PreviewBgImg image={this.props.imageUrl || instaDefault}>
           <img src={instaMockup} style={{maxWidth:'100%'}} alt="Logo" />
-        </div>
+        </PreviewBgImg>
         <InstaCaption>{this.props.imageText || "GetMeAText!"}</InstaCaption>
         {
           (this.props.imageText && this.props.imageUrl) &&

@@ -5,13 +5,18 @@ padding:20px;
 display: flex;
 align-items: center;
 justify-content: space-between;
-min-height: 100vh;
+min-height: 85vh;
 max-width: 800px;
 margin: 0 auto;
 @media (max-width: 810px) {
     flex-direction: column;
 }
 `
+
+const WarningWrapper = styled(PostFactoryWrapper)`
+flex-direction:column;
+justify-content:center;
+`;
 
 const SettingsWrapper = styled.div`
   text-align:center;
@@ -33,19 +38,29 @@ const PreviewWrapper = styled.div`
   }
 `
 
-const AppWrapper = styled.div`
-
-`;
-
 const CollectionWrapper = styled.div`
   text-align:center;
 `;
 
+const PreviewBgImg = styled.div`
+  background:url(${props => props.image});
+  background-size : 100% auto;
+  background-repeat : no-repeat;
+  background-position-y : 20px;
+`;
+
+const PostItemsImageBg = styled(PreviewBgImg)`
+  min-height:150px;
+  background-size:cover;
+  background-position:center;
+`;
 
 export {
   PostFactoryWrapper,
   SettingsWrapper,
   PreviewWrapper,
-  AppWrapper,
-  CollectionWrapper
+  CollectionWrapper,
+  WarningWrapper,
+  PreviewBgImg,
+  PostItemsImageBg
 }

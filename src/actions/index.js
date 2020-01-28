@@ -1,5 +1,11 @@
 import axios from 'axios';
-import {SAVE_TEXT, FETCH_TEXT, FETCH_IMAGE, CHANGE_IMAGE, SAVE_POST} from 'actions/types';
+import {
+  SAVE_TEXT,
+  FETCH_IMAGE,
+  CHANGE_IMAGE,
+  SAVE_POST,
+  DELETE_POST
+} from 'actions/types';
 import {shuffleArray} from 'helpers';
 
 export function saveText(text){
@@ -13,7 +19,7 @@ export function fetchText(){
   return axios.get('https://uselessfacts.jsph.pl/random.json?language=en').then(
     response =>{
       return {
-        type : FETCH_TEXT,
+        type : SAVE_TEXT,
         payload : response.data.text
       }
     }
@@ -39,5 +45,12 @@ export function changeImage(){
 export function savePost(){
   return {
     type : SAVE_POST
+  }
+}
+
+export function deletePost(postId){
+  return{
+    type:DELETE_POST,
+    payload:postId
   }
 }

@@ -61,7 +61,7 @@ class SettingsBox extends Component {
         <StyledMainTitle>Get Me A Post!</StyledMainTitle>
         <StyledText>a simple post generator for overworked influencers </StyledText>
         <StyledButtonWrapper>
-          <StyledButton className="fetch-comments" onClick={this.handleImageFetch}>
+          <StyledButton onClick={this.handleImageFetch} className='fetch-image'>
             Get me an Image <FaCamera/>
           </StyledButton>
         </StyledButtonWrapper>
@@ -77,7 +77,7 @@ class SettingsBox extends Component {
             <StyledButton>Submit my comment <MdChatBubble/></StyledButton>
           </StyledButtonWrapper>
         </form>
-        <StyledSecondTitle>No inspiration? </StyledSecondTitle>
+        <StyledSecondTitle>No inspiration? No worries! </StyledSecondTitle>
         <StyledButtonWrapper>
           <StyledButton className="fetch-comments" onClick={this.props.fetchText}>
             Fetch me a comment <FaQuestionCircle/>
@@ -91,7 +91,6 @@ class SettingsBox extends Component {
 
 
 function mapStateToProps(state){
-  console.log(state);
   return {...state.post};
 }
 
