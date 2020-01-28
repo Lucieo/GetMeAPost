@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/Lucieo/GetMeAPost/static/js/main.5dd095ec.chunk.js",
+    "main.js.map": "/Lucieo/GetMeAPost/static/js/main.5dd095ec.chunk.js.map",
+    "runtime-main.js": "/Lucieo/GetMeAPost/static/js/runtime-main.7a5390ae.js",
+    "runtime-main.js.map": "/Lucieo/GetMeAPost/static/js/runtime-main.7a5390ae.js.map",
+    "static/js/2.c3d779db.chunk.js": "/Lucieo/GetMeAPost/static/js/2.c3d779db.chunk.js",
+    "static/js/2.c3d779db.chunk.js.map": "/Lucieo/GetMeAPost/static/js/2.c3d779db.chunk.js.map",
+    "index.html": "/Lucieo/GetMeAPost/index.html",
+    "precache-manifest.e20e16ad36a983c6fc75f48fe8810ca0.js": "/Lucieo/GetMeAPost/precache-manifest.e20e16ad36a983c6fc75f48fe8810ca0.js",
+    "service-worker.js": "/Lucieo/GetMeAPost/service-worker.js",
+    "static/js/2.c3d779db.chunk.js.LICENSE": "/Lucieo/GetMeAPost/static/js/2.c3d779db.chunk.js.LICENSE",
+    "static/media/insta.png": "/Lucieo/GetMeAPost/static/media/insta.ee59d043.png",
+    "static/media/postImageDefault.png": "/Lucieo/GetMeAPost/static/media/postImageDefault.07b4140a.png",
+    "static/media/zombie.svg": "/Lucieo/GetMeAPost/static/media/zombie.c0bb6fe2.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a5390ae.js",
+    "static/js/2.c3d779db.chunk.js",
+    "static/js/main.5dd095ec.chunk.js"
+  ]
+}
