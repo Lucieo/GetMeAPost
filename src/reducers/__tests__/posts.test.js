@@ -11,6 +11,13 @@ const imagesList = [
   {download_url:'https://download_url2/test/500/600'}
 ]
 
+const fechImageResponse = {
+  data:[
+    {download_url:'https://download_url/test/500/600'},
+    {download_url:'https://download_url/test/500/600'}
+  ]
+}
+
 it('handles actions with unknown type', ()=>{
   const newState = postReducer({}, {type:'LALALALAL'});
   expect(newState).toEqual({});
@@ -28,16 +35,16 @@ it('handle actions of type SAVE_TEXT', ()=>{
 it('handle actions of type FETCH_IMAGE', ()=>{
   const action = {
     type : FETCH_IMAGE,
-    payload : imagesList,
-    imagePageIndex:2,
+    payload : fechImageResponse,
+    meta:{
+      imagePageIndex:2
+    },
   };
   const newState = postReducer({}, action);
-  expect(newState).toEqual({
-    imagesList: imagesList,
-    imageId: 0,
-    imageUrl: 'https://download_url1/test/400/400',
-    imagePageIndex: 2
-  })
+  expect(newState.imagesList).toEqual(fechImageResponse.data);
+  expect(newState.imageId).toEqual(0);
+  expect(newState.imagePageIndex).toEqual(2);
+
 });
 
 it('handle actions of type CHANGE_IMAGE', ()=>{

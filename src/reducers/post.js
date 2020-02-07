@@ -3,21 +3,27 @@ import {
   FETCH_IMAGE,
   CHANGE_IMAGE,
   SAVE_POST,
-  DELETE_POST
-} from 'actions/types'
+  DELETE_POST,
+  FETCH_TEXT
+} from 'actions/types';
+import {shuffleArray} from 'helpers';
 
 export default function(state={}, action){
   switch(action.type){
     case SAVE_TEXT :
       return {...state, imageText:action.payload};
 
+    case FETCH_TEXT:
+      return {...state, imageText:action.payload.data.text};
+
     case FETCH_IMAGE:
-      const firstImageUrl = cleanFormat(action.payload[0].download_url)
+      const imageList = shuffleArray(action.payload.data)
+      const firstImageUrl = cleanFormat(imageList[0].download_url)
       return {...state,
-        imagesList : action.payload,
+        imagesList : imageList,
         imageId:0,
         imageUrl:firstImageUrl,
-        imagePageIndex:action.imagePageIndex
+        imagePageIndex:action.meta.imagePageIndex
       }
 
     case CHANGE_IMAGE:

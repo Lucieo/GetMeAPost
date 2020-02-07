@@ -3,3 +3,4 @@ export const FETCH_IMAGE = 'fetch_image';
 export const CHANGE_IMAGE = 'change_image';
 export const SAVE_POST = 'save_post';
 export const DELETE_POST = 'delete_post';
+export const FETCH_TEXT = 'fetch_text';
